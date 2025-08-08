@@ -1,4 +1,4 @@
-module goroutines-study
+module github.com/mikaelmicheline/goroutines-study
 
 go 1.24.5
 

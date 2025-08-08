@@ -1,9 +1,10 @@
 package main
 
 import (
-	"goroutines-study/app"
 	"log"
 	"os"
+
+	"github.com/mikaelmicheline/goroutines-study/app"
 )
 
 func main() {
