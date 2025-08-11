@@ -9,6 +9,7 @@ func Generate() *cli.App {
 
 	SetupWaitGroupExampleCommand(app)
 	SetupChannelExampleCommand(app)
+	SetupChannelWithBufferExampleCommand(app)
 
 	return app
 }
