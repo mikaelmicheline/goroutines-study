@@ -32,21 +32,20 @@ func SetupSelectExampleCommand(app *cli.App) {
 				case value, open := <-channel1:
 					if open {
 						fmt.Println(value)
-					} else {
-						channel1 = nil
-						if channel2 == nil {
-							break ForLoop
-						}
+						continue
 					}
-
+					channel1 = nil
+					if channel2 == nil {
+						break ForLoop
+					}
 				case value, open := <-channel2:
 					if open {
 						fmt.Println(value)
-					} else {
-						channel2 = nil
-						if channel1 == nil {
-							break ForLoop
-						}
+						continue
+					}
+					channel2 = nil
+					if channel1 == nil {
+						break ForLoop
 					}
 				}
 			}

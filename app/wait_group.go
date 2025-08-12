@@ -27,7 +27,6 @@ func SetupWaitGroupExampleCommand(app *cli.App) {
 			waitGroup.Add(2)
 			go countdown("Countdown A:", 10, time.Millisecond*400)
 			go countdown("Countdown B:", 10, time.Millisecond*700)
-
 			waitGroup.Wait()
 		},
 	},
