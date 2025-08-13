@@ -11,4 +11,7 @@ Study of Goroutines
 - Uses a Channel with Buffer to pause the sender when the Buffer's capacity is reached and to release the sender when the receiver frees space
 
 `go run . select`
-- Uses a Select command to receive from the first channel to send a value
+- Uses a Select command to receive from the first Channel to send a value
+
+`go run . worker-pools-pattern`
+- Implements the Worker Pools Pattern

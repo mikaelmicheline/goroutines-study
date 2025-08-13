@@ -10,7 +10,7 @@ import (
 func SetupSelectExampleCommand(app *cli.App) {
 	app.Commands = append(app.Commands, cli.Command{
 		Name:  "select",
-		Usage: "Uses a Select command to receive from the first channel to send a value",
+		Usage: "Uses a Select command to receive from the first Channel to send a value",
 		Action: func(c *cli.Context) {
 			fmt.Println("Select example!")
 			channel1, channel2 := make(chan string), make(chan string)

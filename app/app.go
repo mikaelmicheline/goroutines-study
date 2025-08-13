@@ -11,6 +11,7 @@ func Generate() *cli.App {
 	SetupChannelExampleCommand(app)
 	SetupChannelWithBufferExampleCommand(app)
 	SetupSelectExampleCommand(app)
+	SetupWorkerPoolsPatternExampleCommand(app)
 
 	return app
 }
