@@ -15,3 +15,6 @@ Study of Goroutines
 
 `go run . worker-pools-pattern`
 - Implements the Worker Pools Pattern
+
+`go run . generator-pattern`
+- Implements the Generator Pattern

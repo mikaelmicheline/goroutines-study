@@ -2,14 +2,32 @@ package app
 
 import (
 	"fmt"
+	"strconv"
 	"time"
 
 	"github.com/urfave/cli"
 )
 
-const numberOfFactorials = 20
-
 func SetupWorkerPoolsPatternExampleCommand(app *cli.App) {
+	const numberOfFactorials = 20
+	const numberOfWorkers = 4
+
+	var factorial func(value uint) uint
+	factorial = func(value uint) uint {
+		if value <= 1 {
+			return 1
+		}
+		return value * factorial(value-1)
+	}
+
+	worker := func(name string, tasks <-chan uint, results chan<- string) {
+		for value := range tasks {
+			time.Sleep(time.Millisecond * 300)
+			result := factorial(value)
+			results <- fmt.Sprintf("%s: %d! = %d", name, value, result)
+		}
+	}
+
 	app.Commands = append(app.Commands, cli.Command{
 		Name:  "worker-pools-pattern",
 		Usage: "Implements the Worker Pools Pattern",
@@ -20,35 +38,17 @@ func SetupWorkerPoolsPatternExampleCommand(app *cli.App) {
 			for i := range uint(numberOfFactorials) {
 				tasks <- i
 			}
-
 			close(tasks)
 
-			go worker("Worker 1", tasks, results)
-			go worker("Worker 2", tasks, results)
-			go worker("Worker 3", tasks, results)
-			go worker("Worker 4", tasks, results)
+			for i := range numberOfWorkers {
+				go worker("Worker "+strconv.Itoa(i+1), tasks, results)
+			}
 
 			for range uint(numberOfFactorials) {
 				fmt.Println(<-results)
 			}
-
 			close(results)
 		},
 	},
 	)
-}
-
-func worker(name string, tasks <-chan uint, results chan<- string) {
-	for value := range tasks {
-		time.Sleep(time.Millisecond * 300)
-		result := factorial(value)
-		results <- fmt.Sprintf("%s: %d! = %d", name, value, result)
-	}
-}
-
-func factorial(value uint) uint {
-	if value == 0 {
-		return 1
-	}
-	return value * factorial(value-1)
 }
