@@ -13,6 +13,7 @@ func Generate() *cli.App {
 	SetupSelectExampleCommand(app)
 	SetupWorkerPoolsPatternExampleCommand(app)
 	SetupGeneratorPatternExampleCommand(app)
+	SetupMultiplexerPatternExampleCommand(app)
 
 	return app
 }

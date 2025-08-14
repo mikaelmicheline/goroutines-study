@@ -18,3 +18,7 @@ Study of Goroutines
 
 `go run . generator-pattern`
 - Implements the Generator Pattern
+
+
+`go run . multiplexer-pattern`
+- Implements the Multiplexer Pattern

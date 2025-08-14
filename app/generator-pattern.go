@@ -9,7 +9,6 @@ import (
 )
 
 func SetupGeneratorPatternExampleCommand(app *cli.App) {
-
 	calculateFactorials := func(numberOfFactorials uint, numberOfWorkers uint) <-chan string {
 		var factorial func(value uint) uint
 		factorial = func(value uint) uint {
